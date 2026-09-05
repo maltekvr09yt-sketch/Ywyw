@@ -17,7 +17,6 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-          cache: maven
 
       - name: Find pom.xml
         id: find-pom
@@ -25,11 +24,11 @@ jobs:
           POM=$(find . -name "pom.xml" -type f | head -n 1)
 
           if [ -z "$POM" ]; then
-            echo "Nie znaleziono pom.xml!"
+            echo "❌ Nie znaleziono pom.xml!"
             exit 1
           fi
 
-          echo "Znaleziono: $POM"
+          echo "✅ Znaleziono pom.xml: $POM"
           echo "pom=$POM" >> "$GITHUB_OUTPUT"
 
       - name: Build with Maven
